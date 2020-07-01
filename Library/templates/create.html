@@ -10,11 +10,11 @@
 </head>
 <body>
     <h1>Add a new book</h1>
-    <form action="" method="post">
+    <form action="/create" method="post">
         {% csrf_token %}
         <p>Title: <input name="title" type="text"></p>
         <p>Author <input name="author" type="text"></p>
-        <p>Year: <input name="release_date" type="date"></p>
+        <p>Year: <input name="year" type="date"></p>
         <p>Pages: <input name="pages" type="text"></p>
         <p>Description: <input name="description" type="text"></p>
         <button type="submit">Submit</button>
