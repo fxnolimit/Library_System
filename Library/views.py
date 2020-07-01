@@ -13,7 +13,7 @@ def create(request):
         year = request.POST["year"]
         pages = request.POST["pages"]
         description = request.POST["description"]
-
+        # create the Book instance then save to db
         new_book = Book(title=title, author=author, year=year, pages=pages, description=description)  
         new_book.save()
 
@@ -25,4 +25,6 @@ def create(request):
 
 # List all books 
 def list_all(request):
-    return render(request, "list_all.html")
+    context = {"books": Book.objects.all()}
+    print("HERE", context["books"])
+    return render(request, "list_all.html", context)
