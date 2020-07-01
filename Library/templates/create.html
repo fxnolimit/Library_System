@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <h1>Add a new book</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Title: <input name="title" type="text"></p>
+        <p>Author <input name="author" type="text"></p>
+        <p>Year: <input name="release_date" type="date"></p>
+        <p>Pages: <input name="pages" type="text"></p>
+        <p>Description: <input name="description" type="text"></p>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
