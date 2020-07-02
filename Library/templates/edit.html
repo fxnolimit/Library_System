@@ -14,7 +14,7 @@
         {% csrf_token %}
         <p>Title: <input name="title" type="text" value="{{book.title}}"></p>
         <p>Author <input name="author" type="text" value="{{book.author}}"></p>
-        <p>Year: <input name="year" type="date" value="{{book.year}}"></p>
+        <p>Year: <input name="year" type="date" value="{{year_format}}"></p>
         <p>Pages: <input name="pages" type="text" value="{{book.pages}}"></p>
         <p>Description: <input name="description" type="text" value="{{book.description}}"></p>
         <button type="submit">Submit</button>

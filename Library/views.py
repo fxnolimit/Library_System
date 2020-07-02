@@ -58,7 +58,9 @@ def edit_id(request, id):
         book.save()
         return redirect("/show/"+ str(book.id))
     elif request.method == "GET":
-        context = {"book": Book.objects.get(id=book_id)}
+        book = Book.objects.get(id=book_id)
+        year = str(book.year)
+        context = {"book": book, "year_format": year}
         return render(request, "edit.html", context)
     else:
         return HttpResponse("Operation not allowed")
