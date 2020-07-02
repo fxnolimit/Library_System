@@ -28,10 +28,11 @@
                 <td>{{book.description}}</td>
                 <td>
                     <a href="/show/{{book.id}}">show</a>
+                    <a href="/edit/{{book.id}}">edit</a>
+                    <a href="/delete/{{book.id}}">delete</a>
                 </td>
             </tr>
         {% endfor %}
-
     </table>
 </body>
 </html>

@@ -27,7 +27,39 @@ def list_all(request):
     context = {"books": Book.objects.all()}
     return render(request, "list_all.html", context)
 
+# Show book information
 def show_id(request, id):
     book_id = id
     context = {"book": Book.objects.get(id=book_id)}
     return render(request, "show.html", context)
+
+# delete book 
+def delete_id(request, id):
+    book = Book.objects.get(id=id)
+    book.delete()
+    return redirect("/list_all")
+
+# edit book
+def edit_id(request, id):
+    book_id = id
+    if request.method == "POST":
+        title = request.POST["title"]
+        author = request.POST["author"]
+        year = request.POST["year"]
+        pages = request.POST["pages"]
+        description = request.POST["description"]
+        # update the book instance then save to db
+        book = Book.objects.get(id=book_id)
+        book.title = title
+        book.author = author
+        book.year = year
+        book.pages = pages
+        book.description = description  
+        book.save()
+        return redirect("/show/"+ str(book.id))
+    elif request.method == "GET":
+        context = {"book": Book.objects.get(id=book_id)}
+        return render(request, "edit.html", context)
+    else:
+        return HttpResponse("Operation not allowed")
+
