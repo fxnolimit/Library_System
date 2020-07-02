@@ -16,8 +16,7 @@ def create(request):
         # create the Book instance then save to db
         new_book = Book(title=title, author=author, year=year, pages=pages, description=description)  
         new_book.save()
-
-        return redirect("/list_all")
+        return redirect("/show/"+ str(new_book.id))
     elif request.method == "GET":
         return render(request, "create.html")
     else:
@@ -26,5 +25,9 @@ def create(request):
 # List all books 
 def list_all(request):
     context = {"books": Book.objects.all()}
-    print("HERE", context["books"])
     return render(request, "list_all.html", context)
+
+def show_id(request, id):
+    book_id = id
+    context = {"book": Book.objects.get(id=book_id)}
+    return render(request, "show.html", context)

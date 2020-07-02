@@ -16,15 +16,19 @@
             <th scope="col">Author</th>
             <th scope="col">Year</th>
             <th scope="col">Pages</th>
-            <th scope="col">Description</th>    
+            <th scope="col">Description</th> 
+            <th scope="col">Actions</th>   
         </tr>
         {% for book in books %}
             <tr>
-                <td>{{ book.title}}</td>
+                <td>{{book.title}}</td>
                 <td>{{book.author}}</td>
                 <td>{{book.year}}</td>
                 <td>{{book.pages}}</td>
                 <td>{{book.description}}</td>
+                <td>
+                    <a href="/show/{{book.id}}">show</a>
+                </td>
             </tr>
         {% endfor %}
 
