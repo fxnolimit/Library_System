@@ -7,6 +7,11 @@
     {% load static %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <script>
+          function remove(id){
+            location.replace("/delete/"+id);
+        };
+    </script>
 </head>
 <body>
     <h1>Book information</h1>
@@ -17,6 +22,6 @@
     <p>Description: {{book.description}}</p>
 
     <a href="/edit/{{book.id}}">Edit</a>
-    <a href="/delete/{{book.id}}">delete</a>
+    <a href="javascript:remove({{book.id}});">delete</a>
 </body>
 </html>

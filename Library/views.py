@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import Book
+from django.contrib import messages
 
 # Home page
 def index(request):
@@ -8,14 +9,22 @@ def index(request):
 # Add a book
 def create(request):
     if request.method == "POST":
-        title = request.POST["title"]
-        author = request.POST["author"]
-        year = request.POST["year"]
-        pages = request.POST["pages"]
-        description = request.POST["description"]
-        # create the Book instance then save to db
-        new_book = Book(title=title, author=author, year=year, pages=pages, description=description)  
-        new_book.save()
+        errors = Book.objects.basic_validator(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect("/create")
+        else :
+            title = request.POST["title"]
+            author = request.POST["author"]
+            year = request.POST["year"]
+            pages = request.POST["pages"]
+            description = request.POST["description"]
+            
+            # create the Book instance then save to db
+            new_book = Book(title=title, author=author, year=year, pages=pages, description=description)  
+            new_book.save()
+            messages.success(request, "Blog successfully updated")
         return redirect("/show/"+ str(new_book.id))
     elif request.method == "GET":
         return render(request, "create.html")

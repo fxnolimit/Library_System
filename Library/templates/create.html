@@ -10,6 +10,13 @@
 </head>
 <body>
     <h1>Add a new book</h1>
+    {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+    {% endif %}
     <form action="/create" method="post">
         {% csrf_token %}
         <p>Title: <input name="title" type="text"></p>
@@ -17,6 +24,8 @@
         <p>Year: <input name="year" type="date"></p>
         <p>Pages: <input name="pages" type="text"></p>
         <p>Description: <input name="description" type="text"></p>
+        <p>Email: <input name="email" type="text"></p>
+
         <button type="submit">Submit</button>
     </form>
 </body>
